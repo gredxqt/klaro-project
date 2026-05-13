@@ -1,0 +1,39 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.form-card, .list-card {
+  margin-bottom: 2rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.request-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.description {
+  color: gray;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+.success-msg {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+.empty {
+  color: gray;
+  text-align: center;
+  padding: 1rem;
+}

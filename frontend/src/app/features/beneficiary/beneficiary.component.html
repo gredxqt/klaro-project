@@ -1,0 +1,72 @@
+<div class="container">
+  <h1>My Aid Requests</h1>
+
+  <!-- Submission Form -->
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Submit a New Request</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+              {{ cat }}
+            </mat-option>
+          </mat-select>
+          <mat-error>Category is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Amount (€)</mat-label>
+          <input matInput type="number" formControlName="amount" placeholder="Max 5000€" />
+          <mat-error *ngIf="form.get('amount')?.hasError('min')">Must be greater than 0</mat-error>
+          <mat-error *ngIf="form.get('amount')?.hasError('max')">Cannot exceed 5000€</mat-error>
+          <mat-error *ngIf="form.get('amount')?.hasError('required')">Amount is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4"
+            placeholder="Describe your situation (min 10 characters)"></textarea>
+          <mat-error>Description must be at least 10 characters</mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+        <p *ngIf="successMessage" class="success-msg">{{ successMessage }}</p>
+
+        <button mat-raised-button color="primary" type="submit"
+          [disabled]="form.invalid || isSubmitting">
+          {{ isSubmitting ? 'Submitting...' : 'Submit Request' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Requests List -->
+  <mat-card class="list-card">
+    <mat-card-header>
+      <mat-card-title>My Requests</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="requests.length === 0" class="empty">No requests yet.</p>
+
+      <mat-list>
+        <mat-list-item *ngFor="let req of requests" class="request-item">
+          <div class="request-row">
+            <div>
+              <strong>{{ req.category }}</strong> — {{ req.amount }}€
+              <p class="description">{{ req.description }}</p>
+            </div>
+            <mat-chip [color]="getStatusColor(req.status)" selected>
+              {{ req.status }}
+            </mat-chip>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
