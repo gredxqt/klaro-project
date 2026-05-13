@@ -8,7 +8,7 @@ Implémentation fullstack d'un module de gestion des demandes d'aide financière
 
 ### Prérequis
 - Node.js 18+
-- PostgreSQL 14+
+- PostgreSQL 18
 - Angular CLI 15
 - npm
 
@@ -21,7 +21,7 @@ npm install
 
 Créer la base de données PostgreSQL :
 ```sql
-CREATE DATABASE klaro_db;
+CREATE DATABASE klaro_test;
 ```
 
 Mettre à jour les identifiants de connexion dans `src/app.module.ts` :
@@ -32,7 +32,7 @@ TypeOrmModule.forRoot({
   port: 5432,
   username: 'postgres',
   password: 'tonmotdepasse',
-  database: 'klaro_db',
+  database: 'klaro_test',
   entities: [AidRequest],
   synchronize: true,
 })
