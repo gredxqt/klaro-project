@@ -12,7 +12,7 @@ export class AidRequestsController {
   constructor(private readonly service: AidRequestsService) {}
 
   @Post()
-  create(@Body() dto: any) {
+  create(@Body() dto: CreateAidRequestDto) {
     return this.service.create(dto);
   }
 
