@@ -35,7 +35,7 @@ export class AidRequestsService {
     );
   }
 
-  createRequest(payload: any): Observable<AidRequest> {
+  createRequest(payload: AidRequest): Observable<AidRequest> {
     
     return this.http.post<AidRequest>(this.apiUrl, payload).pipe(
       
